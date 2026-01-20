@@ -1,4 +1,5 @@
 import MainLayout from "@/components/layout/MainLayout";
+import ScrollAnimation from "@/components/ui/ScrollAnimation";
 import { 
   Leaf, 
   Award, 
@@ -94,28 +95,32 @@ const About = () => {
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-card rounded-2xl p-8 border border-border">
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
-                <Target className="w-7 h-7 text-primary" />
+            <ScrollAnimation animation="fade-right">
+              <div className="bg-card rounded-2xl p-8 border border-border h-full">
+                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+                  <Target className="w-7 h-7 text-primary" />
+                </div>
+                <h2 className="text-2xl font-bold text-foreground mb-4">Sứ mệnh</h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  Mang hương vị trà Việt Nam đến mọi gia đình, góp phần bảo tồn và 
+                  phát triển văn hóa trà truyền thống của dân tộc. Chúng tôi cam kết 
+                  cung cấp những sản phẩm trà chất lượng cao nhất với giá cả hợp lý.
+                </p>
               </div>
-              <h2 className="text-2xl font-bold text-foreground mb-4">Sứ mệnh</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                Mang hương vị trà Việt Nam đến mọi gia đình, góp phần bảo tồn và 
-                phát triển văn hóa trà truyền thống của dân tộc. Chúng tôi cam kết 
-                cung cấp những sản phẩm trà chất lượng cao nhất với giá cả hợp lý.
-              </p>
-            </div>
-            <div className="bg-card rounded-2xl p-8 border border-border">
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
-                <Eye className="w-7 h-7 text-primary" />
+            </ScrollAnimation>
+            <ScrollAnimation animation="fade-left">
+              <div className="bg-card rounded-2xl p-8 border border-border h-full">
+                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+                  <Eye className="w-7 h-7 text-primary" />
+                </div>
+                <h2 className="text-2xl font-bold text-foreground mb-4">Tầm nhìn</h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  Trở thành thương hiệu trà hàng đầu Việt Nam, được yêu thích và 
+                  tin dùng bởi hàng triệu khách hàng. Đưa trà Việt Nam vươn ra 
+                  thị trường quốc tế, khẳng định vị thế trên bản đồ trà thế giới.
+                </p>
               </div>
-              <h2 className="text-2xl font-bold text-foreground mb-4">Tầm nhìn</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                Trở thành thương hiệu trà hàng đầu Việt Nam, được yêu thích và 
-                tin dùng bởi hàng triệu khách hàng. Đưa trà Việt Nam vươn ra 
-                thị trường quốc tế, khẳng định vị thế trên bản đồ trà thế giới.
-              </p>
-            </div>
+            </ScrollAnimation>
           </div>
         </div>
       </section>
@@ -123,30 +128,31 @@ const About = () => {
       {/* Core Values */}
       <section className="py-16 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
-              Giá Trị Cốt Lõi
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Những giá trị định hướng mọi hoạt động của chúng tôi
-            </p>
-          </div>
+          <ScrollAnimation animation="fade-up">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-foreground mb-4">
+                Giá Trị Cốt Lõi
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Những giá trị định hướng mọi hoạt động của chúng tôi
+              </p>
+            </div>
+          </ScrollAnimation>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
-              <div
-                key={index}
-                className="bg-card rounded-xl p-6 text-center border border-border hover:shadow-lg transition-shadow"
-              >
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <value.icon className="w-8 h-8 text-primary" />
+              <ScrollAnimation key={index} animation="fade-up" delay={index * 100}>
+                <div className="bg-card rounded-xl p-6 text-center border border-border hover:shadow-lg transition-shadow h-full">
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                    <value.icon className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
+                    {value.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {value.description}
+                  </p>
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">
-                  {value.title}
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  {value.description}
-                </p>
-              </div>
+              </ScrollAnimation>
             ))}
           </div>
         </div>
@@ -155,47 +161,48 @@ const About = () => {
       {/* Timeline */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
-              Hành Trình Phát Triển
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Những cột mốc quan trọng trong hành trình của chúng tôi
-            </p>
-          </div>
+          <ScrollAnimation animation="fade-up">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-foreground mb-4">
+                Hành Trình Phát Triển
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Những cột mốc quan trọng trong hành trình của chúng tôi
+              </p>
+            </div>
+          </ScrollAnimation>
           <div className="max-w-3xl mx-auto">
             <div className="relative">
               {/* Timeline line */}
               <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-primary/20 -translate-x-1/2" />
               
               {milestones.map((milestone, index) => (
-                <div
-                  key={index}
-                  className={`relative flex items-center gap-8 mb-8 ${
+                <ScrollAnimation key={index} animation={index % 2 === 0 ? "fade-right" : "fade-left"} delay={index * 100}>
+                  <div className={`relative flex items-center gap-8 mb-8 ${
                     index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                  }`}
-                >
-                  {/* Content */}
-                  <div className={`flex-1 ml-16 md:ml-0 ${index % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
-                    <div className="bg-card rounded-xl p-6 border border-border inline-block">
-                      <span className="text-primary font-bold text-lg">
-                        {milestone.year}
-                      </span>
-                      <h3 className="font-semibold text-foreground mt-1">
-                        {milestone.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground mt-1">
-                        {milestone.description}
-                      </p>
+                  }`}>
+                    {/* Content */}
+                    <div className={`flex-1 ml-16 md:ml-0 ${index % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
+                      <div className="bg-card rounded-xl p-6 border border-border inline-block">
+                        <span className="text-primary font-bold text-lg">
+                          {milestone.year}
+                        </span>
+                        <h3 className="font-semibold text-foreground mt-1">
+                          {milestone.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          {milestone.description}
+                        </p>
+                      </div>
                     </div>
+                    
+                    {/* Dot */}
+                    <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-primary rounded-full -translate-x-1/2 border-4 border-background" />
+                    
+                    {/* Spacer for desktop */}
+                    <div className="hidden md:block flex-1" />
                   </div>
-                  
-                  {/* Dot */}
-                  <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-primary rounded-full -translate-x-1/2 border-4 border-background" />
-                  
-                  {/* Spacer for desktop */}
-                  <div className="hidden md:block flex-1" />
-                </div>
+                </ScrollAnimation>
               ))}
             </div>
           </div>
@@ -205,11 +212,13 @@ const About = () => {
       {/* Why Choose Us */}
       <section className="py-16 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
-              Tại Sao Chọn Trà Việt?
-            </h2>
-          </div>
+          <ScrollAnimation animation="fade-up">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-foreground mb-4">
+                Tại Sao Chọn Trà Việt?
+              </h2>
+            </div>
+          </ScrollAnimation>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
               "100% trà nguyên chất từ các vùng trồng nổi tiếng",
@@ -219,10 +228,12 @@ const About = () => {
               "Giao hàng nhanh chóng toàn quốc",
               "Chính sách đổi trả linh hoạt 30 ngày",
             ].map((item, index) => (
-              <div key={index} className="flex items-start gap-3 bg-card p-4 rounded-xl border border-border">
-                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                <span className="text-foreground">{item}</span>
-              </div>
+              <ScrollAnimation key={index} animation="fade-up" delay={index * 50}>
+                <div className="flex items-start gap-3 bg-card p-4 rounded-xl border border-border h-full">
+                  <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-foreground">{item}</span>
+                </div>
+              </ScrollAnimation>
             ))}
           </div>
         </div>
@@ -231,35 +242,36 @@ const About = () => {
       {/* Team */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
-              Đội Ngũ Của Chúng Tôi
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Những người đam mê trà, tận tâm phục vụ khách hàng
-            </p>
-          </div>
+          <ScrollAnimation animation="fade-up">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-foreground mb-4">
+                Đội Ngũ Của Chúng Tôi
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Những người đam mê trà, tận tâm phục vụ khách hàng
+              </p>
+            </div>
+          </ScrollAnimation>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
             {team.map((member, index) => (
-              <div
-                key={index}
-                className="bg-card rounded-xl overflow-hidden border border-border text-center group"
-              >
-                <div className="aspect-square overflow-hidden">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+              <ScrollAnimation key={index} animation="zoom-in" delay={index * 100}>
+                <div className="bg-card rounded-xl overflow-hidden border border-border text-center group">
+                  <div className="aspect-square overflow-hidden">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-semibold text-foreground">{member.name}</h3>
+                    <p className="text-primary text-sm">{member.role}</p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {member.description}
+                    </p>
+                  </div>
                 </div>
-                <div className="p-4">
-                  <h3 className="font-semibold text-foreground">{member.name}</h3>
-                  <p className="text-primary text-sm">{member.role}</p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    {member.description}
-                  </p>
-                </div>
-              </div>
+              </ScrollAnimation>
             ))}
           </div>
         </div>
@@ -268,24 +280,25 @@ const About = () => {
       {/* Locations */}
       <section className="py-16 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Hệ Thống Cửa Hàng</h2>
-            <p className="opacity-90">Ghé thăm cửa hàng gần bạn nhất</p>
-          </div>
+          <ScrollAnimation animation="fade-up">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Hệ Thống Cửa Hàng</h2>
+              <p className="opacity-90">Ghé thăm cửa hàng gần bạn nhất</p>
+            </div>
+          </ScrollAnimation>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {[
               { city: "TP. Hồ Chí Minh", address: "123 Nguyễn Huệ, Quận 1" },
               { city: "Hà Nội", address: "456 Phố Huế, Hai Bà Trưng" },
               { city: "Đà Nẵng", address: "789 Nguyễn Văn Linh, Hải Châu" },
             ].map((location, index) => (
-              <div
-                key={index}
-                className="bg-white/10 backdrop-blur rounded-xl p-6 text-center"
-              >
-                <MapPin className="w-8 h-8 mx-auto mb-3 opacity-90" />
-                <h3 className="font-semibold text-lg">{location.city}</h3>
-                <p className="text-sm opacity-80 mt-1">{location.address}</p>
-              </div>
+              <ScrollAnimation key={index} animation="zoom-in" delay={index * 100}>
+                <div className="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
+                  <MapPin className="w-8 h-8 mx-auto mb-3 opacity-90" />
+                  <h3 className="font-semibold text-lg">{location.city}</h3>
+                  <p className="text-sm opacity-80 mt-1">{location.address}</p>
+                </div>
+              </ScrollAnimation>
             ))}
           </div>
         </div>

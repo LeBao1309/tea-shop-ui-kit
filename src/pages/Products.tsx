@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { Search, SlidersHorizontal, ChevronDown, Leaf, Package, Coffee, Flower2, Gift, UtensilsCrossed } from "lucide-react";
 import MainLayout from "@/components/layout/MainLayout";
 import ProductCard from "@/components/ui/ProductCard";
+import ScrollAnimation from "@/components/ui/ScrollAnimation";
 import product1 from "@/assets/product-1.jpg";
 import product2 from "@/assets/product-2.jpg";
 import product3 from "@/assets/product-3.jpg";
@@ -130,13 +131,17 @@ const Products = () => {
       {/* PAGE HEADER */}
       <section className="bg-secondary/50 py-12 md:py-16">
         <div className="container">
-          <div className="text-center">
-            <h1 className="section-title mb-4">Bộ Sưu Tập Trà</h1>
-            <p className="section-subtitle">
-              Khám phá hơn 500 loại trà, combo và trà cụ cao cấp
-            </p>
-            
-            {/* Category Pills - Mobile Friendly */}
+          <ScrollAnimation animation="fade-up">
+            <div className="text-center">
+              <h1 className="section-title mb-4">Bộ Sưu Tập Trà</h1>
+              <p className="section-subtitle">
+                Khám phá hơn 500 loại trà, combo và trà cụ cao cấp
+              </p>
+            </div>
+          </ScrollAnimation>
+          
+          {/* Category Pills - Mobile Friendly */}
+          <ScrollAnimation animation="fade-up" delay={100}>
             <div className="flex flex-wrap justify-center gap-2 mt-8">
               {categories.map((cat) => (
                 <button
@@ -160,7 +165,7 @@ const Products = () => {
                 </button>
               ))}
             </div>
-          </div>
+          </ScrollAnimation>
         </div>
       </section>
 
@@ -311,20 +316,18 @@ const Products = () => {
               {/* Products Grid */}
               {filteredProducts.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-                  {/* <?php foreach ($products as $product): ?> */}
-                  {filteredProducts.map((product, index) => (
-                    <div key={product.id} className="animate-fade-up" style={{ animationDelay: `${index * 0.05}s` }}>
-                      <ProductCard 
-                        id={product.id}
-                        name={product.name}
-                        price={product.price}
-                        originalPrice={product.originalPrice}
-                        image={product.image}
-                        category={product.categoryName}
-                      />
-                    </div>
-                  ))}
-                  {/* <?php endforeach; ?> */}
+              {filteredProducts.map((product, index) => (
+                <ScrollAnimation key={product.id} animation="fade-up" delay={index * 30}>
+                  <ProductCard 
+                    id={product.id}
+                    name={product.name}
+                    price={product.price}
+                    originalPrice={product.originalPrice}
+                    image={product.image}
+                    category={product.categoryName}
+                  />
+                </ScrollAnimation>
+              ))}
                 </div>
               ) : (
                 <div className="text-center py-16 bg-secondary/30 rounded-2xl">

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import MainLayout from "@/components/layout/MainLayout";
+import ScrollAnimation from "@/components/ui/ScrollAnimation";
 import { 
   MapPin, 
   Phone, 
@@ -87,13 +88,15 @@ const Contact = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/10 via-secondary/50 to-background py-12 md:py-16">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Liên Hệ Với Chúng Tôi
-          </h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn. Hãy liên hệ với chúng tôi 
-            qua bất kỳ kênh nào bên dưới.
-          </p>
+          <ScrollAnimation animation="fade-up">
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Liên Hệ Với Chúng Tôi
+            </h1>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn. Hãy liên hệ với chúng tôi 
+              qua bất kỳ kênh nào bên dưới.
+            </p>
+          </ScrollAnimation>
         </div>
       </section>
 
@@ -103,70 +106,71 @@ const Contact = () => {
             {/* Contact Info */}
             <div className="lg:col-span-1 space-y-6">
               {contactInfo.map((info, index) => (
-                <div
-                  key={index}
-                  className="bg-card rounded-xl p-6 border border-border hover:shadow-md transition-shadow"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <info.icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">
-                        {info.title}
-                      </h3>
-                      {info.link ? (
-                        <a
-                          href={info.link}
-                          className="text-muted-foreground hover:text-primary transition-colors"
-                          target={info.link.startsWith("http") ? "_blank" : undefined}
-                          rel={info.link.startsWith("http") ? "noopener noreferrer" : undefined}
-                        >
-                          {info.content}
-                        </a>
-                      ) : (
-                        <p className="text-muted-foreground">{info.content}</p>
-                      )}
-                      {info.subContent && (
-                        <p className="text-sm text-muted-foreground mt-1">
-                          {info.subContent}
-                        </p>
-                      )}
+                <ScrollAnimation key={index} animation="fade-right" delay={index * 100}>
+                  <div className="bg-card rounded-xl p-6 border border-border hover:shadow-md transition-shadow">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <info.icon className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground mb-1">
+                          {info.title}
+                        </h3>
+                        {info.link ? (
+                          <a
+                            href={info.link}
+                            className="text-muted-foreground hover:text-primary transition-colors"
+                            target={info.link.startsWith("http") ? "_blank" : undefined}
+                            rel={info.link.startsWith("http") ? "noopener noreferrer" : undefined}
+                          >
+                            {info.content}
+                          </a>
+                        ) : (
+                          <p className="text-muted-foreground">{info.content}</p>
+                        )}
+                        {info.subContent && (
+                          <p className="text-sm text-muted-foreground mt-1">
+                            {info.subContent}
+                          </p>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </ScrollAnimation>
               ))}
 
               {/* Social Media */}
-              <div className="bg-card rounded-xl p-6 border border-border">
-                <h3 className="font-semibold text-foreground mb-4">
-                  Kết nối với chúng tôi
-                </h3>
-                <div className="flex gap-3">
-                  <a
-                    href="#"
-                    className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white hover:bg-blue-600 transition-colors"
-                  >
-                    <Facebook className="w-5 h-5" />
-                  </a>
-                  <a
-                    href="#"
-                    className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white hover:opacity-90 transition-opacity"
-                  >
-                    <Instagram className="w-5 h-5" />
-                  </a>
-                  <a
-                    href="#"
-                    className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white hover:bg-green-600 transition-colors"
-                  >
-                    <MessageCircle className="w-5 h-5" />
-                  </a>
+              <ScrollAnimation animation="fade-right" delay={400}>
+                <div className="bg-card rounded-xl p-6 border border-border">
+                  <h3 className="font-semibold text-foreground mb-4">
+                    Kết nối với chúng tôi
+                  </h3>
+                  <div className="flex gap-3">
+                    <a
+                      href="#"
+                      className="w-10 h-10 rounded-full bg-[#1877F2] flex items-center justify-center text-white hover:opacity-90 transition-opacity"
+                    >
+                      <Facebook className="w-5 h-5" />
+                    </a>
+                    <a
+                      href="#"
+                      className="w-10 h-10 rounded-full bg-gradient-to-br from-[#833AB4] via-[#E1306C] to-[#F77737] flex items-center justify-center text-white hover:opacity-90 transition-opacity"
+                    >
+                      <Instagram className="w-5 h-5" />
+                    </a>
+                    <a
+                      href="#"
+                      className="w-10 h-10 rounded-full bg-[#25D366] flex items-center justify-center text-white hover:opacity-90 transition-opacity"
+                    >
+                      <MessageCircle className="w-5 h-5" />
+                    </a>
+                  </div>
                 </div>
-              </div>
+              </ScrollAnimation>
             </div>
 
             {/* Contact Form */}
-            <div className="lg:col-span-2">
+            <ScrollAnimation animation="fade-left" className="lg:col-span-2">
               <div className="bg-card rounded-xl p-6 md:p-8 border border-border">
                 <h2 className="text-xl font-bold text-foreground mb-6">
                   Gửi tin nhắn cho chúng tôi
@@ -275,23 +279,22 @@ const Contact = () => {
                   </form>
                 )}
               </div>
-            </div>
+            </ScrollAnimation>
           </div>
 
           {/* Map */}
-          <div className="mt-12">
+          <ScrollAnimation animation="fade-up" className="mt-12">
             <div className="bg-card rounded-xl overflow-hidden border border-border">
               <div className="aspect-[21/9] bg-muted flex items-center justify-center">
                 <div className="text-center">
                   <MapPin className="w-12 h-12 text-muted-foreground mx-auto mb-2" />
                   <p className="text-muted-foreground">
-                    {/* <?php echo $googleMapsEmbed; ?> */}
                     Google Maps sẽ được nhúng tại đây
                   </p>
                 </div>
               </div>
             </div>
-          </div>
+          </ScrollAnimation>
         </div>
       </section>
     </MainLayout>
