@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng - Trà Việt</title>
+    <meta name="description" content="Giỏ hàng của bạn tại Trà Việt">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: 'hsl(142, 45%, 35%)', foreground: 'hsl(0, 0%, 100%)' },
+                        secondary: { DEFAULT: 'hsl(140, 30%, 94%)', foreground: 'hsl(142, 45%, 25%)' },
+                        background: 'hsl(140, 25%, 98%)',
+                        foreground: 'hsl(142, 20%, 15%)',
+                        card: 'hsl(0, 0%, 100%)',
+                        muted: { DEFAULT: 'hsl(140, 15%, 92%)', foreground: 'hsl(142, 10%, 45%)' },
+                        border: 'hsl(140, 20%, 88%)',
+                        destructive: { DEFAULT: 'hsl(0, 72%, 51%)', foreground: 'hsl(0, 0%, 100%)' },
+                    },
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: hsl(140, 25%, 98%); }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; }
+        .btn-primary { @apply bg-primary text-white px-6 py-3 rounded-xl font-medium hover:opacity-90 transition-all; }
+        .btn-secondary { @apply bg-secondary text-primary px-6 py-3 rounded-xl font-medium hover:bg-secondary/80 transition-all; }
+    </style>
+</head>
+<body>
+    <!-- HEADER - Include from layouts/header.html -->
+    <header class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="text-2xl font-display font-bold text-primary">Trà Việt</a>
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="index.html" class="text-foreground hover:text-primary transition-colors">Trang chủ</a>
+                    <a href="products.html" class="text-foreground hover:text-primary transition-colors">Sản phẩm</a>
+                    <a href="about.html" class="text-foreground hover:text-primary transition-colors">Giới thiệu</a>
+                    <a href="contact.html" class="text-foreground hover:text-primary transition-colors">Liên hệ</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <a href="cart.html" class="relative p-2 hover:bg-secondary rounded-full transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                        <span class="absolute -top-1 -right-1 w-5 h-5 bg-primary text-white text-xs rounded-full flex items-center justify-center">3</span>
+                    </a>
+                    <a href="login.html" class="btn-primary text-sm py-2 px-4">Đăng nhập</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="min-h-screen bg-secondary/30 py-8">
+        <div class="container mx-auto px-4">
+            <!-- Page Header -->
+            <div class="flex items-center gap-3 mb-8">
+                <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                </svg>
+                <h1 class="text-2xl md:text-3xl font-bold text-foreground">Giỏ Hàng Của Bạn</h1>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Cart Items -->
+                <div class="lg:col-span-2 space-y-4">
+                    <!-- Cart Item 1 -->
+                    <div class="bg-white rounded-xl p-4 shadow-sm border border-border">
+                        <div class="flex gap-4">
+                            <img src="../assets/product-1.jpg" alt="Trà Thái Nguyên" class="w-24 h-24 object-cover rounded-lg">
+                            <div class="flex-1">
+                                <div class="flex justify-between">
+                                    <div>
+                                        <p class="text-xs text-primary font-medium mb-1">Trà xanh</p>
+                                        <h3 class="font-semibold text-foreground">Trà Thái Nguyên Đặc Biệt</h3>
+                                    </div>
+                                    <button class="text-muted-foreground hover:text-destructive transition-colors">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between mt-3">
+                                    <div class="flex items-center gap-2 bg-secondary rounded-lg">
+                                        <button class="w-8 h-8 flex items-center justify-center hover:bg-muted rounded-l-lg transition-colors">−</button>
+                                        <span class="w-8 text-center font-medium">2</span>
+                                        <button class="w-8 h-8 flex items-center justify-center hover:bg-muted rounded-r-lg transition-colors">+</button>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="font-bold text-primary">500.000đ</p>
+                                        <p class="text-xs text-muted-foreground line-through">640.000đ</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cart Item 2 -->
+                    <div class="bg-white rounded-xl p-4 shadow-sm border border-border">
+                        <div class="flex gap-4">
+                            <img src="../assets/product-2.jpg" alt="Trà Ô Long" class="w-24 h-24 object-cover rounded-lg">
+                            <div class="flex-1">
+                                <div class="flex justify-between">
+                                    <div>
+                                        <p class="text-xs text-primary font-medium mb-1">Trà Ô Long</p>
+                                        <h3 class="font-semibold text-foreground">Trà Ô Long Cao Cấp</h3>
+                                    </div>
+                                    <button class="text-muted-foreground hover:text-destructive transition-colors">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between mt-3">
+                                    <div class="flex items-center gap-2 bg-secondary rounded-lg">
+                                        <button class="w-8 h-8 flex items-center justify-center hover:bg-muted rounded-l-lg transition-colors">−</button>
+                                        <span class="w-8 text-center font-medium">1</span>
+                                        <button class="w-8 h-8 flex items-center justify-center hover:bg-muted rounded-r-lg transition-colors">+</button>
+                                    </div>
+                                    <p class="font-bold text-primary">380.000đ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Continue Shopping -->
+                    <a href="products.html" class="inline-flex items-center gap-2 text-primary hover:underline mt-4">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                        Tiếp tục mua sắm
+                    </a>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-border sticky top-24">
+                        <h2 class="text-lg font-bold text-foreground mb-6">Tóm Tắt Đơn Hàng</h2>
+                        
+                        <!-- Voucher -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-foreground mb-2">Mã giảm giá</label>
+                            <div class="flex gap-2">
+                                <input type="text" placeholder="Nhập mã voucher" class="flex-1 px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50">
+                                <button class="btn-secondary py-2 px-4">Áp dụng</button>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 border-t border-border pt-4">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-muted-foreground">Tạm tính</span>
+                                <span class="font-medium">880.000đ</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-muted-foreground">Tiết kiệm</span>
+                                <span class="text-primary font-medium">-140.000đ</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-muted-foreground">Phí vận chuyển</span>
+                                <span class="text-primary font-medium">Miễn phí</span>
+                            </div>
+                            <div class="border-t border-border pt-3 flex justify-between">
+                                <span class="font-semibold">Tổng cộng</span>
+                                <span class="text-xl font-bold text-primary">880.000đ</span>
+                            </div>
+                        </div>
+
+                        <a href="checkout.html" class="btn-primary w-full text-center mt-6 block">
+                            Tiến hành thanh toán
+                        </a>
+
+                        <!-- Trust Badges -->
+                        <div class="mt-6 pt-6 border-t border-border">
+                            <div class="flex items-center gap-3 text-sm text-muted-foreground mb-3">
+                                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                </svg>
+                                <span>Thanh toán an toàn & bảo mật</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-muted-foreground">
+                                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                </svg>
+                                <span>Đổi trả miễn phí trong 7 ngày</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-foreground text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-display font-bold mb-4">Trà Việt</h3>
+                    <p class="text-white/70 text-sm">Mang hương vị trà Việt Nam đến mọi gia đình.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Liên kết</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a href="products.html" class="hover:text-white">Sản phẩm</a></li>
+                        <li><a href="about.html" class="hover:text-white">Giới thiệu</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Hỗ trợ</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a href="faq.html" class="hover:text-white">FAQ</a></li>
+                        <li><a href="shipping.html" class="hover:text-white">Vận chuyển</a></li>
+                        <li><a href="returns.html" class="hover:text-white">Đổi trả</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Liên hệ</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li>1900 1234 56</li>
+                        <li>info@traviet.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/20 mt-8 pt-8 text-center text-sm text-white/50">
+                © 2024 Trà Việt. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

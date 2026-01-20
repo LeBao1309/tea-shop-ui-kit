@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới Thiệu - Trà Việt</title>
+    <meta name="description" content="Câu chuyện về Trà Việt - Hơn 14 năm đồng hành cùng người yêu trà Việt Nam">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: 'hsl(142, 45%, 35%)', foreground: 'hsl(0, 0%, 100%)' },
+                        secondary: { DEFAULT: 'hsl(140, 30%, 94%)', foreground: 'hsl(142, 45%, 25%)' },
+                        background: 'hsl(140, 25%, 98%)',
+                        foreground: 'hsl(142, 20%, 15%)',
+                        card: 'hsl(0, 0%, 100%)',
+                        muted: { DEFAULT: 'hsl(140, 15%, 92%)', foreground: 'hsl(142, 10%, 45%)' },
+                        border: 'hsl(140, 20%, 88%)',
+                    },
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: hsl(140, 25%, 98%); }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="text-2xl font-display font-bold text-primary">Trà Việt</a>
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="index.html" class="text-foreground hover:text-primary transition-colors">Trang chủ</a>
+                    <a href="products.html" class="text-foreground hover:text-primary transition-colors">Sản phẩm</a>
+                    <a href="about.html" class="text-primary font-medium">Giới thiệu</a>
+                    <a href="contact.html" class="text-foreground hover:text-primary transition-colors">Liên hệ</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <a href="cart.html" class="relative p-2 hover:bg-secondary rounded-full transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </a>
+                    <a href="login.html" class="bg-primary text-white px-4 py-2 rounded-xl text-sm font-medium hover:opacity-90">Đăng nhập</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative py-20 md:py-28 overflow-hidden">
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('../assets/hero-tea.jpg');">
+                <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40"></div>
+            </div>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="max-w-2xl text-white">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Câu Chuyện Trà Việt</h1>
+                    <p class="text-lg md:text-xl text-white/90 leading-relaxed">
+                        Hơn 14 năm đồng hành cùng người yêu trà Việt Nam, chúng tôi tự hào 
+                        mang đến những sản phẩm trà chất lượng cao, kết nối giá trị truyền thống 
+                        với cuộc sống hiện đại.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission & Vision -->
+        <section class="py-16 bg-background">
+            <div class="container mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-2xl p-8 border border-border">
+                        <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+                            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold text-foreground mb-4">Sứ mệnh</h2>
+                        <p class="text-muted-foreground leading-relaxed">
+                            Mang hương vị trà Việt Nam đến mọi gia đình, góp phần bảo tồn và 
+                            phát triển văn hóa trà truyền thống của dân tộc. Chúng tôi cam kết 
+                            cung cấp những sản phẩm trà chất lượng cao nhất với giá cả hợp lý.
+                        </p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-8 border border-border">
+                        <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+                            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold text-foreground mb-4">Tầm nhìn</h2>
+                        <p class="text-muted-foreground leading-relaxed">
+                            Trở thành thương hiệu trà hàng đầu Việt Nam, được yêu thích và 
+                            tin dùng bởi hàng triệu khách hàng. Đưa trà Việt Nam vươn ra 
+                            thị trường quốc tế, khẳng định vị thế trên bản đồ trà thế giới.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Values -->
+        <section class="py-16 bg-secondary/30">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-foreground mb-4">Giá Trị Cốt Lõi</h2>
+                    <p class="text-muted-foreground max-w-2xl mx-auto">Những giá trị định hướng mọi hoạt động của chúng tôi</p>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white rounded-xl p-6 text-center border border-border hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-foreground mb-2">Chất lượng</h3>
+                        <p class="text-sm text-muted-foreground">Chọn lọc những lá trà tươi ngon nhất từ các vùng trồng trà nổi tiếng</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 text-center border border-border hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-foreground mb-2">Tận tâm</h3>
+                        <p class="text-sm text-muted-foreground">Phục vụ khách hàng với sự nhiệt tình và chu đáo nhất</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 text-center border border-border hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-foreground mb-2">Uy tín</h3>
+                        <p class="text-sm text-muted-foreground">Cam kết mang đến sản phẩm chính hãng, nguồn gốc rõ ràng</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 text-center border border-border hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-foreground mb-2">Cộng đồng</h3>
+                        <p class="text-sm text-muted-foreground">Hỗ trợ nông dân và phát triển cộng đồng trồng trà Việt Nam</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <section class="py-16 bg-background">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-foreground mb-4">Hành Trình Phát Triển</h2>
+                    <p class="text-muted-foreground max-w-2xl mx-auto">Những cột mốc quan trọng trong hành trình của chúng tôi</p>
+                </div>
+                <div class="max-w-3xl mx-auto space-y-8">
+                    <div class="flex gap-6">
+                        <div class="w-24 text-right">
+                            <span class="text-primary font-bold text-lg">2010</span>
+                        </div>
+                        <div class="w-4 h-4 bg-primary rounded-full mt-1.5 flex-shrink-0"></div>
+                        <div class="flex-1 bg-white rounded-xl p-4 border border-border">
+                            <h3 class="font-semibold text-foreground">Thành lập</h3>
+                            <p class="text-sm text-muted-foreground">Khởi đầu từ một tiệm trà nhỏ tại Thái Nguyên</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="w-24 text-right">
+                            <span class="text-primary font-bold text-lg">2015</span>
+                        </div>
+                        <div class="w-4 h-4 bg-primary rounded-full mt-1.5 flex-shrink-0"></div>
+                        <div class="flex-1 bg-white rounded-xl p-4 border border-border">
+                            <h3 class="font-semibold text-foreground">Mở rộng</h3>
+                            <p class="text-sm text-muted-foreground">Mở rộng ra thị trường Hà Nội và TP.HCM</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="w-24 text-right">
+                            <span class="text-primary font-bold text-lg">2018</span>
+                        </div>
+                        <div class="w-4 h-4 bg-primary rounded-full mt-1.5 flex-shrink-0"></div>
+                        <div class="flex-1 bg-white rounded-xl p-4 border border-border">
+                            <h3 class="font-semibold text-foreground">Chứng nhận</h3>
+                            <p class="text-sm text-muted-foreground">Đạt chứng nhận ISO 22000 về an toàn thực phẩm</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="w-24 text-right">
+                            <span class="text-primary font-bold text-lg">2020</span>
+                        </div>
+                        <div class="w-4 h-4 bg-primary rounded-full mt-1.5 flex-shrink-0"></div>
+                        <div class="flex-1 bg-white rounded-xl p-4 border border-border">
+                            <h3 class="font-semibold text-foreground">Online</h3>
+                            <p class="text-sm text-muted-foreground">Ra mắt website thương mại điện tử</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="w-24 text-right">
+                            <span class="text-primary font-bold text-lg">2024</span>
+                        </div>
+                        <div class="w-4 h-4 bg-primary rounded-full mt-1.5 flex-shrink-0"></div>
+                        <div class="flex-1 bg-white rounded-xl p-4 border border-border">
+                            <h3 class="font-semibold text-foreground">Phát triển</h3>
+                            <p class="text-sm text-muted-foreground">Phục vụ hơn 100,000 khách hàng trên toàn quốc</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Locations -->
+        <section class="py-16 bg-primary text-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">Hệ Thống Cửa Hàng</h2>
+                    <p class="opacity-90">Ghé thăm cửa hàng gần bạn nhất</p>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                    <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
+                        <svg class="w-8 h-8 mx-auto mb-3 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        <h3 class="font-semibold text-lg">TP. Hồ Chí Minh</h3>
+                        <p class="text-sm opacity-80 mt-1">123 Nguyễn Huệ, Quận 1</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
+                        <svg class="w-8 h-8 mx-auto mb-3 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        <h3 class="font-semibold text-lg">Hà Nội</h3>
+                        <p class="text-sm opacity-80 mt-1">456 Phố Huế, Hai Bà Trưng</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
+                        <svg class="w-8 h-8 mx-auto mb-3 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        <h3 class="font-semibold text-lg">Đà Nẵng</h3>
+                        <p class="text-sm opacity-80 mt-1">789 Nguyễn Văn Linh, Hải Châu</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-foreground text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-display font-bold mb-4">Trà Việt</h3>
+                    <p class="text-white/70 text-sm">Mang hương vị trà Việt Nam đến mọi gia đình.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Liên kết</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a href="products.html" class="hover:text-white">Sản phẩm</a></li>
+                        <li><a href="about.html" class="hover:text-white">Giới thiệu</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Hỗ trợ</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a href="faq.html" class="hover:text-white">FAQ</a></li>
+                        <li><a href="shipping.html" class="hover:text-white">Vận chuyển</a></li>
+                        <li><a href="returns.html" class="hover:text-white">Đổi trả</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Liên hệ</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li>1900 1234 56</li>
+                        <li>info@traviet.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/20 mt-8 pt-8 text-center text-sm text-white/50">
+                © 2024 Trà Việt. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
