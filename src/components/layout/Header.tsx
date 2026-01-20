@@ -1,6 +1,7 @@
-import { Leaf, ShoppingCart, User, Menu, X } from "lucide-react";
+import { Leaf, ShoppingCart, User, Menu, X, Search } from "lucide-react";
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Input } from "@/components/ui/input";
 
 /**
  * HEADER COMPONENT
@@ -13,7 +14,10 @@ import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const location = useLocation();
+  const navigate = useNavigate();
 
   const navLinks = [
     { href: "/", label: "Trang chủ" },
@@ -23,6 +27,16 @@ const Header = () => {
   ];
 
   const isActive = (path: string) => location.pathname === path;
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery("");
+      setSearchOpen(false);
+      setMobileMenuOpen(false);
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
@@ -52,7 +66,40 @@ const Header = () => {
           </nav>
 
           {/* ACTIONS */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            {/* Search Toggle - Desktop */}
+            <div className="hidden md:flex items-center">
+              {searchOpen ? (
+                <form onSubmit={handleSearch} className="flex items-center gap-2">
+                  <Input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Tìm kiếm sản phẩm..."
+                    className="w-48 lg:w-64 h-9"
+                    autoFocus
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSearchOpen(false);
+                      setSearchQuery("");
+                    }}
+                    className="p-2 rounded-full hover:bg-secondary transition-colors"
+                  >
+                    <X className="w-4 h-4 text-muted-foreground" />
+                  </button>
+                </form>
+              ) : (
+                <button
+                  onClick={() => setSearchOpen(true)}
+                  className="p-2 rounded-full hover:bg-secondary transition-colors"
+                >
+                  <Search className="w-5 h-5 text-foreground" />
+                </button>
+              )}
+            </div>
+
             {/* Cart Button */}
             <Link
               to="/cart"
@@ -103,6 +150,20 @@ const Header = () => {
         {/* MOBILE MENU */}
         {mobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-border animate-fade-up">
+            {/* Mobile Search */}
+            <form onSubmit={handleSearch} className="px-4 mb-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Tìm kiếm sản phẩm..."
+                  className="pl-10"
+                />
+              </div>
+            </form>
+
             <nav className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <Link
