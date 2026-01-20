@@ -16,6 +16,7 @@ import OrderHistory from "./pages/OrderHistory";
 import Wishlist from "./pages/Wishlist";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import FAQ from "./pages/FAQ";
 import ShippingPolicy from "./pages/ShippingPolicy";
 import ReturnsPolicy from "./pages/ReturnsPolicy";
 import TermsOfService from "./pages/TermsOfService";
@@ -44,6 +45,7 @@ const App = () => (
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="/shipping" element={<ShippingPolicy />} />
           <Route path="/returns" element={<ReturnsPolicy />} />
           <Route path="/terms" element={<TermsOfService />} />
