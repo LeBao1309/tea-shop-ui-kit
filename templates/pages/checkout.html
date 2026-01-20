@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh Toán - Trà Việt</title>
+    <meta name="description" content="Hoàn tất đơn hàng tại Trà Việt">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: 'hsl(142, 45%, 35%)', foreground: 'hsl(0, 0%, 100%)' },
+                        secondary: { DEFAULT: 'hsl(140, 30%, 94%)', foreground: 'hsl(142, 45%, 25%)' },
+                        background: 'hsl(140, 25%, 98%)',
+                        foreground: 'hsl(142, 20%, 15%)',
+                        card: 'hsl(0, 0%, 100%)',
+                        muted: { DEFAULT: 'hsl(140, 15%, 92%)', foreground: 'hsl(142, 10%, 45%)' },
+                        border: 'hsl(140, 20%, 88%)',
+                    },
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: hsl(140, 25%, 98%); }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; }
+        .btn-primary { @apply bg-primary text-white px-6 py-3 rounded-xl font-medium hover:opacity-90 transition-all; }
+        .form-input { @apply w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 bg-white; }
+        .form-label { @apply block text-sm font-medium text-foreground mb-2; }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="text-2xl font-display font-bold text-primary">Trà Việt</a>
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="index.html" class="text-foreground hover:text-primary transition-colors">Trang chủ</a>
+                    <a href="products.html" class="text-foreground hover:text-primary transition-colors">Sản phẩm</a>
+                    <a href="about.html" class="text-foreground hover:text-primary transition-colors">Giới thiệu</a>
+                    <a href="contact.html" class="text-foreground hover:text-primary transition-colors">Liên hệ</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <a href="cart.html" class="relative p-2 hover:bg-secondary rounded-full transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                        <span class="absolute -top-1 -right-1 w-5 h-5 bg-primary text-white text-xs rounded-full flex items-center justify-center">3</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="min-h-screen bg-secondary/30 py-8">
+        <div class="container mx-auto px-4">
+            <!-- Breadcrumb -->
+            <nav class="flex items-center gap-2 text-sm mb-6">
+                <a href="cart.html" class="text-muted-foreground hover:text-primary">Giỏ hàng</a>
+                <svg class="w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+                <span class="text-foreground font-medium">Thanh toán</span>
+            </nav>
+
+            <h1 class="text-2xl md:text-3xl font-bold text-foreground mb-8">Thanh Toán</h1>
+
+            <form class="grid lg:grid-cols-3 gap-8">
+                <!-- Checkout Form -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Shipping Information -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-border">
+                        <h2 class="text-lg font-bold text-foreground mb-6 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            Thông tin giao hàng
+                        </h2>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="form-label">Họ và tên *</label>
+                                <input type="text" name="fullname" class="form-input" placeholder="Nguyễn Văn A" required>
+                            </div>
+                            <div>
+                                <label class="form-label">Email *</label>
+                                <input type="email" name="email" class="form-input" placeholder="email@example.com" required>
+                            </div>
+                            <div>
+                                <label class="form-label">Số điện thoại *</label>
+                                <input type="tel" name="phone" class="form-input" placeholder="0901234567" required>
+                            </div>
+                            <div>
+                                <label class="form-label">Thành phố *</label>
+                                <select name="city" class="form-input" required>
+                                    <option value="">Chọn thành phố</option>
+                                    <option value="hcm">TP. Hồ Chí Minh</option>
+                                    <option value="hanoi">Hà Nội</option>
+                                    <option value="danang">Đà Nẵng</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="form-label">Địa chỉ *</label>
+                                <input type="text" name="address" class="form-input" placeholder="Số nhà, đường, phường/xã, quận/huyện" required>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="form-label">Ghi chú</label>
+                                <textarea name="notes" class="form-input" rows="3" placeholder="Ghi chú cho đơn hàng (không bắt buộc)"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Method -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-border">
+                        <h2 class="text-lg font-bold text-foreground mb-6 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>
+                            </svg>
+                            Phương thức vận chuyển
+                        </h2>
+                        <div class="space-y-3">
+                            <label class="flex items-center gap-4 p-4 border border-border rounded-xl cursor-pointer hover:border-primary transition-colors">
+                                <input type="radio" name="shipping" value="standard" class="w-4 h-4 text-primary" checked>
+                                <div class="flex-1">
+                                    <p class="font-medium text-foreground">Giao hàng tiêu chuẩn</p>
+                                    <p class="text-sm text-muted-foreground">3-5 ngày làm việc</p>
+                                </div>
+                                <span class="font-semibold text-primary">Miễn phí</span>
+                            </label>
+                            <label class="flex items-center gap-4 p-4 border border-border rounded-xl cursor-pointer hover:border-primary transition-colors">
+                                <input type="radio" name="shipping" value="express" class="w-4 h-4 text-primary">
+                                <div class="flex-1">
+                                    <p class="font-medium text-foreground">Giao hàng nhanh</p>
+                                    <p class="text-sm text-muted-foreground">1-2 ngày làm việc</p>
+                                </div>
+                                <span class="font-semibold">50.000đ</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Payment Method -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-border">
+                        <h2 class="text-lg font-bold text-foreground mb-6 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                            </svg>
+                            Phương thức thanh toán
+                        </h2>
+                        <div class="space-y-3">
+                            <label class="flex items-center gap-4 p-4 border border-border rounded-xl cursor-pointer hover:border-primary transition-colors">
+                                <input type="radio" name="payment" value="cod" class="w-4 h-4 text-primary" checked>
+                                <div class="flex-1">
+                                    <p class="font-medium text-foreground">Thanh toán khi nhận hàng (COD)</p>
+                                    <p class="text-sm text-muted-foreground">Thanh toán bằng tiền mặt khi nhận hàng</p>
+                                </div>
+                            </label>
+                            <label class="flex items-center gap-4 p-4 border border-border rounded-xl cursor-pointer hover:border-primary transition-colors">
+                                <input type="radio" name="payment" value="bank" class="w-4 h-4 text-primary">
+                                <div class="flex-1">
+                                    <p class="font-medium text-foreground">Chuyển khoản ngân hàng</p>
+                                    <p class="text-sm text-muted-foreground">Chuyển khoản trước khi giao hàng</p>
+                                </div>
+                            </label>
+                            <label class="flex items-center gap-4 p-4 border border-border rounded-xl cursor-pointer hover:border-primary transition-colors">
+                                <input type="radio" name="payment" value="card" class="w-4 h-4 text-primary">
+                                <div class="flex-1">
+                                    <p class="font-medium text-foreground">Thẻ tín dụng / Ghi nợ</p>
+                                    <p class="text-sm text-muted-foreground">Visa, Mastercard, JCB</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-border sticky top-24">
+                        <h2 class="text-lg font-bold text-foreground mb-6">Đơn hàng của bạn</h2>
+                        
+                        <!-- Items -->
+                        <div class="space-y-4 mb-6">
+                            <div class="flex gap-3">
+                                <img src="../assets/product-1.jpg" alt="" class="w-16 h-16 object-cover rounded-lg">
+                                <div class="flex-1">
+                                    <p class="font-medium text-foreground text-sm">Trà Thái Nguyên Đặc Biệt</p>
+                                    <p class="text-xs text-muted-foreground">x2</p>
+                                </div>
+                                <p class="font-medium">500.000đ</p>
+                            </div>
+                            <div class="flex gap-3">
+                                <img src="../assets/product-2.jpg" alt="" class="w-16 h-16 object-cover rounded-lg">
+                                <div class="flex-1">
+                                    <p class="font-medium text-foreground text-sm">Trà Ô Long Cao Cấp</p>
+                                    <p class="text-xs text-muted-foreground">x1</p>
+                                </div>
+                                <p class="font-medium">380.000đ</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 border-t border-border pt-4">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-muted-foreground">Tạm tính</span>
+                                <span class="font-medium">880.000đ</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-muted-foreground">Phí vận chuyển</span>
+                                <span class="text-primary font-medium">Miễn phí</span>
+                            </div>
+                            <div class="border-t border-border pt-3 flex justify-between">
+                                <span class="font-semibold">Tổng cộng</span>
+                                <span class="text-xl font-bold text-primary">880.000đ</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary w-full mt-6">
+                            Đặt hàng
+                        </button>
+
+                        <p class="text-xs text-muted-foreground text-center mt-4">
+                            Bằng việc đặt hàng, bạn đồng ý với 
+                            <a href="terms.html" class="text-primary hover:underline">Điều khoản sử dụng</a>
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-foreground text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-display font-bold mb-4">Trà Việt</h3>
+                    <p class="text-white/70 text-sm">Mang hương vị trà Việt Nam đến mọi gia đình.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Liên kết</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a href="products.html" class="hover:text-white">Sản phẩm</a></li>
+                        <li><a href="about.html" class="hover:text-white">Giới thiệu</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Hỗ trợ</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a href="faq.html" class="hover:text-white">FAQ</a></li>
+                        <li><a href="shipping.html" class="hover:text-white">Vận chuyển</a></li>
+                        <li><a href="returns.html" class="hover:text-white">Đổi trả</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Liên hệ</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li>1900 1234 56</li>
+                        <li>info@traviet.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/20 mt-8 pt-8 text-center text-sm text-white/50">
+                © 2024 Trà Việt. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
