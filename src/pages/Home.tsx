@@ -1,4 +1,5 @@
-import { ArrowRight, Leaf, Shield, Truck, Award, Star, Quote, Search, ShoppingBag, CreditCard, Package } from "lucide-react";
+import { useState } from "react";
+import { ArrowRight, Leaf, Shield, Truck, Award, Star, Quote, Search, ShoppingBag, CreditCard, Package, Flame, Percent, TrendingUp, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import MainLayout from "@/components/layout/MainLayout";
 import ProductCard from "@/components/ui/ProductCard";
@@ -18,22 +19,35 @@ import combo3 from "@/assets/combo-3.jpg";
  * HOME PAGE - Trang chủ
  * PHP: resources/views/pages/home.php
  * 
- * Sections:
+ * Sections (Đã sắp xếp hợp lý):
  * 1. Hero - Giới thiệu thương hiệu
- * 2. Featured Products - Sản phẩm nổi bật
- * 3. Benefits - Lợi ích / USP
- * 4. Customer Reviews - Đánh giá khách hàng (NEW)
- * 5. Accessories - Phụ kiện trà (NEW)
- * 6. Combo Products - Combo theo chủ đề (NEW)
- * 7. Order Guide - Hướng dẫn đặt hàng (NEW)
+ * 2. Benefits - Lợi ích / USP (Tạo niềm tin trước)
+ * 3. Featured Products - Sản phẩm nổi bật (Với filter)
+ * 4. Combo Products - Combo theo chủ đề
+ * 5. Accessories - Phụ kiện trà
+ * 6. Customer Reviews - Đánh giá khách hàng (Social proof)
+ * 7. Order Guide - Hướng dẫn đặt hàng
  * 8. CTA Newsletter
  */
 
-const featuredProducts = [
-  { id: 1, name: "Trà Thái Nguyên Đặc Biệt", price: 250000, originalPrice: 320000, image: product1, category: "Trà xanh" },
-  { id: 2, name: "Trà Ô Long Cao Cấp", price: 380000, image: product2, category: "Trà Ô Long" },
-  { id: 3, name: "Bột Matcha Nguyên Chất", price: 450000, originalPrice: 520000, image: product3, category: "Matcha" },
-  { id: 4, name: "Trà Hoa Nhài Thảo Mộc", price: 180000, image: product4, category: "Trà thảo mộc" },
+type ProductFilter = 'all' | 'bestseller' | 'discount' | 'new';
+
+const productFilters = [
+  { key: 'all' as ProductFilter, label: 'Tất cả', icon: Sparkles },
+  { key: 'bestseller' as ProductFilter, label: 'Bán chạy', icon: Flame },
+  { key: 'discount' as ProductFilter, label: 'Khuyến mãi', icon: Percent },
+  { key: 'new' as ProductFilter, label: 'Mới nhất', icon: TrendingUp },
+];
+
+const allProducts = [
+  { id: 1, name: "Trà Thái Nguyên Đặc Biệt", price: 250000, originalPrice: 320000, image: product1, category: "Trà xanh", tags: ['bestseller', 'discount'] },
+  { id: 2, name: "Trà Ô Long Cao Cấp", price: 380000, image: product2, category: "Trà Ô Long", tags: ['bestseller'] },
+  { id: 3, name: "Bột Matcha Nguyên Chất", price: 450000, originalPrice: 520000, image: product3, category: "Matcha", tags: ['discount', 'new'] },
+  { id: 4, name: "Trà Hoa Nhài Thảo Mộc", price: 180000, image: product4, category: "Trà thảo mộc", tags: ['new'] },
+  { id: 5, name: "Trà Sen Tây Hồ", price: 420000, originalPrice: 550000, image: product1, category: "Trà sen", tags: ['bestseller', 'discount'] },
+  { id: 6, name: "Trà Lài Mộc Châu", price: 195000, image: product2, category: "Trà hoa", tags: ['new'] },
+  { id: 7, name: "Trà Đen Premium", price: 280000, originalPrice: 350000, image: product3, category: "Trà đen", tags: ['discount'] },
+  { id: 8, name: "Trà Shan Tuyết Cổ Thụ", price: 520000, image: product4, category: "Trà xanh", tags: ['bestseller', 'new'] },
 ];
 
 const benefits = [
@@ -137,9 +151,15 @@ const orderSteps = [
 ];
 
 const Home = () => {
+  const [activeFilter, setActiveFilter] = useState<ProductFilter>('all');
+
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
   };
+
+  const filteredProducts = activeFilter === 'all' 
+    ? allProducts.slice(0, 8)
+    : allProducts.filter(p => p.tags.includes(activeFilter));
 
   return (
     <MainLayout>
@@ -207,31 +227,7 @@ const Home = () => {
       </section>
 
       {/* =====================================================
-          SECTION 2: FEATURED PRODUCTS
-          ===================================================== */}
-      <section className="py-16 md:py-24">
-        <div className="container">
-          <div className="text-center mb-12">
-            <span className="text-primary font-medium text-sm uppercase tracking-wide">Bộ sưu tập</span>
-            <h2 className="section-title mt-2 mb-4">Sản Phẩm Nổi Bật</h2>
-            <p className="section-subtitle">Những loại trà được yêu thích nhất, chọn lọc kỹ càng từ những vùng trà danh tiếng</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} {...product} />
-            ))}
-          </div>
-          <div className="text-center mt-10">
-            <Link to="/products" className="btn-secondary inline-flex items-center gap-2">
-              Xem tất cả sản phẩm
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* =====================================================
-          SECTION 3: BENEFITS / USP
+          SECTION 2: BENEFITS / USP (Đưa lên trước để tạo niềm tin)
           ===================================================== */}
       <section className="py-16 md:py-24 bg-secondary/50">
         <div className="container">
@@ -255,111 +251,76 @@ const Home = () => {
       </section>
 
       {/* =====================================================
-          SECTION 4: CUSTOMER REVIEWS - Đánh giá khách hàng
+          SECTION 3: FEATURED PRODUCTS (Với Filter Tabs)
           ===================================================== */}
       <section className="py-16 md:py-24">
         <div className="container">
-          <div className="text-center mb-12">
-            <span className="text-primary font-medium text-sm uppercase tracking-wide">Khách hàng nói gì</span>
-            <h2 className="section-title mt-2 mb-4">Đánh Giá Từ Khách Hàng</h2>
-            <p className="section-subtitle">Hơn 10.000 khách hàng đã tin tưởng và yêu thích sản phẩm của chúng tôi</p>
+          <div className="text-center mb-8">
+            <span className="text-primary font-medium text-sm uppercase tracking-wide">Bộ sưu tập</span>
+            <h2 className="section-title mt-2 mb-4">Sản Phẩm Nổi Bật</h2>
+            <p className="section-subtitle">Những loại trà được yêu thích nhất, chọn lọc kỹ càng từ những vùng trà danh tiếng</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* <?php foreach ($reviews as $review): ?> */}
-            {customerReviews.map((review, index) => (
-              <div
-                key={review.id}
-                className="bg-card rounded-2xl p-6 shadow-soft hover:shadow-hover transition-shadow duration-300 animate-fade-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
+          {/* Filter Tabs */}
+          {/* <?php 
+            $filters = ['all' => 'Tất cả', 'bestseller' => 'Bán chạy', 'discount' => 'Khuyến mãi', 'new' => 'Mới nhất'];
+            $activeFilter = $_GET['filter'] ?? 'all';
+          ?> */}
+          <div className="flex flex-wrap justify-center gap-3 mb-10">
+            {productFilters.map((filter) => (
+              <button
+                key={filter.key}
+                onClick={() => setActiveFilter(filter.key)}
+                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
+                  activeFilter === filter.key
+                    ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'
+                    : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+                }`}
               >
-                {/* Quote Icon */}
-                <Quote className="w-10 h-10 text-primary/20 mb-4" />
+                <filter.icon className="w-4 h-4" />
+                {filter.label}
+                {filter.key !== 'all' && (
+                  <span className={`ml-1 px-2 py-0.5 rounded-full text-xs ${
+                    activeFilter === filter.key ? 'bg-primary-foreground/20' : 'bg-muted'
+                  }`}>
+                    {allProducts.filter(p => p.tags.includes(filter.key)).length}
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
 
-                {/* Rating */}
-                <div className="flex gap-1 mb-4">
-                  {[...Array(review.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-tea-gold text-tea-gold" />
-                  ))}
-                </div>
-
-                {/* Comment */}
-                <p className="text-foreground leading-relaxed mb-6">"{review.comment}"</p>
-
-                {/* Product Tag */}
-                <div className="inline-block px-3 py-1 bg-secondary rounded-full text-xs text-secondary-foreground mb-4">
-                  {review.product}
-                </div>
-
-                {/* Customer Info */}
-                <div className="flex items-center gap-3 pt-4 border-t border-border">
-                  <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold">
-                    {review.avatar}
-                  </div>
-                  <div>
-                    <p className="font-semibold text-foreground">{review.name}</p>
-                    <p className="text-sm text-muted-foreground">{review.location}</p>
-                  </div>
-                </div>
+          {/* Products Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* <?php foreach ($products as $product): ?> */}
+            {filteredProducts.map((product, index) => (
+              <div key={product.id} className="animate-fade-up" style={{ animationDelay: `${index * 0.05}s` }}>
+                <ProductCard {...product} />
               </div>
             ))}
             {/* <?php endforeach; ?> */}
           </div>
 
-          {/* Stats */}
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="text-center p-6 bg-secondary/50 rounded-2xl">
-              <p className="text-3xl md:text-4xl font-bold text-primary">4.9</p>
-              <p className="text-sm text-muted-foreground mt-1">Đánh giá trung bình</p>
+          {/* Empty State */}
+          {filteredProducts.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">Không có sản phẩm nào trong danh mục này</p>
             </div>
-            <div className="text-center p-6 bg-secondary/50 rounded-2xl">
-              <p className="text-3xl md:text-4xl font-bold text-primary">2.5K+</p>
-              <p className="text-sm text-muted-foreground mt-1">Đánh giá 5 sao</p>
-            </div>
-            <div className="text-center p-6 bg-secondary/50 rounded-2xl">
-              <p className="text-3xl md:text-4xl font-bold text-primary">98%</p>
-              <p className="text-sm text-muted-foreground mt-1">Khách hài lòng</p>
-            </div>
-            <div className="text-center p-6 bg-secondary/50 rounded-2xl">
-              <p className="text-3xl md:text-4xl font-bold text-primary">85%</p>
-              <p className="text-sm text-muted-foreground mt-1">Khách quay lại</p>
-            </div>
-          </div>
-        </div>
-      </section>
+          )}
 
-      {/* =====================================================
-          SECTION 5: ACCESSORIES - Phụ kiện trà
-          ===================================================== */}
-      <section className="py-16 md:py-24 bg-secondary/30">
-        <div className="container">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
-            <div>
-              <span className="text-primary font-medium text-sm uppercase tracking-wide">Phụ kiện</span>
-              <h2 className="section-title mt-2 text-left">Phụ Kiện Trà Cao Cấp</h2>
-              <p className="text-muted-foreground mt-2 max-w-lg">
-                Nâng tầm trải nghiệm thưởng trà với những phụ kiện tinh tế
-              </p>
-            </div>
-            <Link to="/products?category=accessories" className="btn-outline text-sm">
-              Xem tất cả phụ kiện
+          <div className="text-center mt-10">
+            <Link to="/products" className="btn-secondary inline-flex items-center gap-2">
+              Xem tất cả sản phẩm
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* <?php foreach ($accessories as $accessory): ?> */}
-            {accessories.map((item) => (
-              <ProductCard key={item.id} {...item} />
-            ))}
-            {/* <?php endforeach; ?> */}
-          </div>
         </div>
       </section>
 
       {/* =====================================================
-          SECTION 6: COMBO PRODUCTS - Combo theo chủ đề
+          SECTION 4: COMBO PRODUCTS - Combo theo chủ đề (Đưa lên trước phụ kiện)
           ===================================================== */}
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24 bg-primary/5">
         <div className="container">
           <div className="text-center mb-12">
             <span className="text-primary font-medium text-sm uppercase tracking-wide">Combo tiết kiệm</span>
@@ -431,9 +392,111 @@ const Home = () => {
       </section>
 
       {/* =====================================================
+          SECTION 5: ACCESSORIES - Phụ kiện trà
+          ===================================================== */}
+      <section className="py-16 md:py-24">
+        <div className="container">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+            <div>
+              <span className="text-primary font-medium text-sm uppercase tracking-wide">Phụ kiện</span>
+              <h2 className="section-title mt-2 text-left">Phụ Kiện Trà Cao Cấp</h2>
+              <p className="text-muted-foreground mt-2 max-w-lg">
+                Nâng tầm trải nghiệm thưởng trà với những phụ kiện tinh tế
+              </p>
+            </div>
+            <Link to="/products?category=accessories" className="btn-outline text-sm">
+              Xem tất cả phụ kiện
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* <?php foreach ($accessories as $accessory): ?> */}
+            {accessories.map((item) => (
+              <ProductCard key={item.id} {...item} />
+            ))}
+            {/* <?php endforeach; ?> */}
+          </div>
+        </div>
+      </section>
+
+      {/* =====================================================
+          SECTION 6: CUSTOMER REVIEWS - Đánh giá khách hàng (Social proof)
+          ===================================================== */}
+      <section className="py-16 md:py-24 bg-secondary/30">
+        <div className="container">
+          <div className="text-center mb-12">
+            <span className="text-primary font-medium text-sm uppercase tracking-wide">Khách hàng nói gì</span>
+            <h2 className="section-title mt-2 mb-4">Đánh Giá Từ Khách Hàng</h2>
+            <p className="section-subtitle">Hơn 10.000 khách hàng đã tin tưởng và yêu thích sản phẩm của chúng tôi</p>
+          </div>
+
+          {/* Stats - Đưa lên trên để tạo ấn tượng */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            <div className="text-center p-6 bg-card rounded-2xl shadow-soft">
+              <p className="text-3xl md:text-4xl font-bold text-primary">4.9</p>
+              <p className="text-sm text-muted-foreground mt-1">Đánh giá trung bình</p>
+            </div>
+            <div className="text-center p-6 bg-card rounded-2xl shadow-soft">
+              <p className="text-3xl md:text-4xl font-bold text-primary">2.5K+</p>
+              <p className="text-sm text-muted-foreground mt-1">Đánh giá 5 sao</p>
+            </div>
+            <div className="text-center p-6 bg-card rounded-2xl shadow-soft">
+              <p className="text-3xl md:text-4xl font-bold text-primary">98%</p>
+              <p className="text-sm text-muted-foreground mt-1">Khách hài lòng</p>
+            </div>
+            <div className="text-center p-6 bg-card rounded-2xl shadow-soft">
+              <p className="text-3xl md:text-4xl font-bold text-primary">85%</p>
+              <p className="text-sm text-muted-foreground mt-1">Khách quay lại</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* <?php foreach ($reviews as $review): ?> */}
+            {customerReviews.map((review, index) => (
+              <div
+                key={review.id}
+                className="bg-card rounded-2xl p-6 shadow-soft hover:shadow-hover transition-shadow duration-300 animate-fade-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {/* Quote Icon */}
+                <Quote className="w-10 h-10 text-primary/20 mb-4" />
+
+                {/* Rating */}
+                <div className="flex gap-1 mb-4">
+                  {[...Array(review.rating)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 fill-tea-gold text-tea-gold" />
+                  ))}
+                </div>
+
+                {/* Comment */}
+                <p className="text-foreground leading-relaxed mb-6">"{review.comment}"</p>
+
+                {/* Product Tag */}
+                <div className="inline-block px-3 py-1 bg-secondary rounded-full text-xs text-secondary-foreground mb-4">
+                  {review.product}
+                </div>
+
+                {/* Customer Info */}
+                <div className="flex items-center gap-3 pt-4 border-t border-border">
+                  <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold">
+                    {review.avatar}
+                  </div>
+                  <div>
+                    <p className="font-semibold text-foreground">{review.name}</p>
+                    <p className="text-sm text-muted-foreground">{review.location}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+            {/* <?php endforeach; ?> */}
+          </div>
+        </div>
+      </section>
+
+      {/* =====================================================
           SECTION 7: ORDER GUIDE - Hướng dẫn đặt hàng
           ===================================================== */}
-      <section className="py-16 md:py-24 bg-primary/5">
+      <section className="py-16 md:py-24">
         <div className="container">
           <div className="text-center mb-12">
             <span className="text-primary font-medium text-sm uppercase tracking-wide">Dễ dàng & Nhanh chóng</span>
