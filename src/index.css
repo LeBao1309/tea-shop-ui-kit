@@ -1,96 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Tea Green Theme - Natural & Organic */
+    --background: 138 25% 97%;
+    --foreground: 150 10% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 150 10% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 150 10% 20%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Deep Tea Green */
+    --primary: 142 45% 32%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Light Sage */
+    --secondary: 138 30% 92%;
+    --secondary-foreground: 142 45% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted - Soft Tea Tones */
+    --muted: 138 20% 94%;
+    --muted-foreground: 150 10% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent - Fresh Emerald */
+    --accent: 152 55% 45%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 138 20% 88%;
+    --input: 138 20% 88%;
+    --ring: 142 45% 32%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Custom Tea Theme Variables */
+    --tea-cream: 45 30% 96%;
+    --tea-gold: 38 70% 55%;
+    --tea-brown: 25 30% 35%;
+    --tea-leaf: 142 50% 40%;
+    --tea-matcha: 138 40% 50%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(138 30% 95%) 0%, hsl(142 25% 90%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(138 20% 98%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(142 45% 35%) 0%, hsl(152 55% 40%) 100%);
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(142 30% 30% / 0.1);
+    --shadow-card: 0 8px 30px -8px hsl(142 30% 30% / 0.12);
+    --shadow-hover: 0 12px 40px -12px hsl(142 30% 30% / 0.18);
 
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 138 25% 97%;
+    --sidebar-foreground: 150 10% 20%;
+    --sidebar-primary: 142 45% 32%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 138 30% 92%;
+    --sidebar-accent-foreground: 142 45% 25%;
+    --sidebar-border: 138 20% 88%;
+    --sidebar-ring: 142 45% 32%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
+    --background: 150 15% 10%;
+    --foreground: 138 20% 95%;
+    --card: 150 12% 14%;
+    --card-foreground: 138 20% 95%;
+    --popover: 150 12% 14%;
+    --popover-foreground: 138 20% 95%;
+    --primary: 142 50% 50%;
+    --primary-foreground: 150 15% 10%;
+    --secondary: 150 12% 18%;
+    --secondary-foreground: 138 20% 90%;
+    --muted: 150 12% 18%;
+    --muted-foreground: 138 15% 60%;
+    --accent: 152 55% 45%;
+    --accent-foreground: 150 15% 10%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 150 12% 20%;
+    --input: 150 12% 20%;
+    --ring: 142 50% 50%;
   }
 }
 
@@ -100,6 +97,148 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    @apply tracking-tight;
+  }
+}
+
+@layer components {
+  /* Hero Section Styles */
+  .hero-section {
+    background: var(--gradient-hero);
+    @apply relative overflow-hidden;
+  }
+
+  .hero-title {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight;
+  }
+
+  .hero-subtitle {
+    @apply text-lg md:text-xl text-muted-foreground leading-relaxed;
+  }
+
+  /* Product Card Styles */
+  .product-card {
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-soft);
+    @apply rounded-2xl overflow-hidden transition-all duration-300 ease-out;
+  }
+
+  .product-card:hover {
+    box-shadow: var(--shadow-hover);
+    @apply -translate-y-1;
+  }
+
+  .product-image {
+    @apply w-full aspect-square object-cover bg-secondary;
+  }
+
+  .product-title {
+    @apply font-semibold text-lg text-foreground;
+  }
+
+  .product-price {
+    @apply text-primary font-bold text-xl;
+  }
+
+  /* Form Styles */
+  .form-container {
+    @apply bg-card rounded-2xl p-8 md:p-10;
+    box-shadow: var(--shadow-card);
+  }
+
+  .form-input {
+    @apply w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-foreground mb-2;
+  }
+
+  /* Button Variants */
+  .btn-primary {
+    background: var(--gradient-primary);
+    @apply text-primary-foreground font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:opacity-90 hover:shadow-lg active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:bg-secondary/80;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary text-primary font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:bg-primary hover:text-primary-foreground;
+  }
+
+  /* Navigation */
+  .nav-link {
+    @apply text-foreground/80 hover:text-primary font-medium transition-colors duration-200;
+  }
+
+  .nav-link-active {
+    @apply text-primary font-semibold;
+  }
+
+  /* Section Styles */
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-foreground text-center;
+  }
+
+  .section-subtitle {
+    @apply text-muted-foreground text-center text-lg max-w-2xl mx-auto;
+  }
+
+  /* Benefits Card */
+  .benefit-card {
+    @apply bg-card rounded-2xl p-6 text-center transition-all duration-300 hover:shadow-lg;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .benefit-icon {
+    @apply w-16 h-16 mx-auto mb-4 rounded-full bg-secondary flex items-center justify-center text-primary;
+  }
+
+  /* Footer */
+  .footer {
+    @apply bg-foreground text-background;
+  }
+
+  /* Decorative Elements */
+  .leaf-decoration {
+    @apply absolute opacity-10 pointer-events-none;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
