@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trà Việt - Tinh Hoa Trà Việt Nam</title>
+    <meta name="description" content="Khám phá hương vị trà Việt Nam chính hiệu với các sản phẩm trà xanh, trà ô long, trà sen cao cấp.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: 'hsl(142, 45%, 35%)', foreground: 'hsl(0, 0%, 100%)' },
+                        secondary: { DEFAULT: 'hsl(140, 30%, 94%)', foreground: 'hsl(142, 20%, 15%)' },
+                        background: 'hsl(140, 25%, 98%)',
+                        foreground: 'hsl(142, 20%, 15%)',
+                        muted: { DEFAULT: 'hsl(140, 20%, 96%)', foreground: 'hsl(142, 10%, 45%)' },
+                        accent: { DEFAULT: 'hsl(140, 40%, 92%)', foreground: 'hsl(142, 45%, 30%)' },
+                        border: 'hsl(140, 20%, 88%)',
+                        ring: 'hsl(142, 45%, 35%)'
+                    },
+                    fontFamily: { display: ['Playfair Display', 'serif'], sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: hsl(140, 25%, 98%); }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white/95 backdrop-blur-sm shadow-sm sticky top-0 z-50 border-b border-border">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="text-2xl font-display font-bold text-primary">Trà Việt</a>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-foreground hover:text-primary transition-colors font-medium">Trang chủ</a>
+                    <a href="products.html" class="text-muted-foreground hover:text-primary transition-colors">Sản phẩm</a>
+                    <a href="about.html" class="text-muted-foreground hover:text-primary transition-colors">Giới thiệu</a>
+                    <a href="contact.html" class="text-muted-foreground hover:text-primary transition-colors">Liên hệ</a>
+                    <a href="faq.html" class="text-muted-foreground hover:text-primary transition-colors">FAQ</a>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 hover:bg-secondary rounded-full transition-colors">
+                        <svg class="w-5 h-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    </button>
+                    <a href="cart.html" class="p-2 hover:bg-secondary rounded-full transition-colors relative">
+                        <svg class="w-5 h-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        <span class="absolute -top-1 -right-1 bg-primary text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">3</span>
+                    </a>
+                    <a href="login.html" class="hidden md:inline-flex items-center px-4 py-2 bg-primary text-white rounded-xl hover:opacity-90 transition-all font-medium text-sm">Đăng nhập</a>
+                    <button id="mobile-menu-btn" class="md:hidden p-2 hover:bg-secondary rounded-full transition-colors">
+                        <svg class="w-5 h-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    </button>
+                </div>
+            </div>
+            <nav id="mobile-menu" class="md:hidden hidden pb-4 border-t border-border mt-2 pt-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="index.html" class="text-foreground hover:text-primary transition-colors font-medium px-2 py-1">Trang chủ</a>
+                    <a href="products.html" class="text-muted-foreground hover:text-primary transition-colors px-2 py-1">Sản phẩm</a>
+                    <a href="about.html" class="text-muted-foreground hover:text-primary transition-colors px-2 py-1">Giới thiệu</a>
+                    <a href="contact.html" class="text-muted-foreground hover:text-primary transition-colors px-2 py-1">Liên hệ</a>
+                    <a href="faq.html" class="text-muted-foreground hover:text-primary transition-colors px-2 py-1">FAQ</a>
+                    <a href="login.html" class="text-primary font-medium px-2 py-1">Đăng nhập</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-1">
+        <!-- Hero Section -->
+        <section class="relative bg-gradient-to-br from-secondary to-accent py-20 lg:py-32 overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute top-10 left-10 w-32 h-32 bg-primary rounded-full blur-3xl"></div>
+                <div class="absolute bottom-10 right-10 w-48 h-48 bg-primary rounded-full blur-3xl"></div>
+            </div>
+            <div class="container mx-auto px-4 relative">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="text-center lg:text-left">
+                        <span class="inline-block px-4 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">Tinh Hoa Trà Việt</span>
+                        <h1 class="text-4xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
+                            Khám Phá Hương Vị <span class="text-primary">Trà Việt Nam</span>
+                        </h1>
+                        <p class="text-lg text-muted-foreground mb-8 max-w-lg mx-auto lg:mx-0">
+                            Thưởng thức những loại trà thượng hạng được tuyển chọn từ những vùng trà nổi tiếng nhất Việt Nam.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <a href="products.html" class="inline-flex items-center justify-center px-8 py-4 bg-primary text-white rounded-xl hover:opacity-90 transition-all font-semibold text-lg shadow-lg shadow-primary/30">
+                                Khám Phá Ngay
+                                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                            </a>
+                            <a href="about.html" class="inline-flex items-center justify-center px-8 py-4 bg-white text-foreground rounded-xl hover:bg-secondary transition-all font-semibold text-lg border border-border">
+                                Tìm Hiểu Thêm
+                            </a>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="aspect-square bg-gradient-to-br from-primary/20 to-primary/5 rounded-3xl flex items-center justify-center">
+                            <img src="../assets/hero-tea.jpg" alt="Trà Việt Nam cao cấp" class="w-4/5 h-4/5 object-cover rounded-2xl shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=600&h=600&fit=crop'">
+                        </div>
+                        <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-foreground">100% Organic</p>
+                                    <p class="text-sm text-muted-foreground">Trà sạch tự nhiên</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="text-center p-6 rounded-2xl bg-secondary/50">
+                        <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
+                        </div>
+                        <h3 class="font-semibold text-foreground mb-1">Miễn Phí Vận Chuyển</h3>
+                        <p class="text-sm text-muted-foreground">Đơn hàng từ 500K</p>
+                    </div>
+                    <div class="text-center p-6 rounded-2xl bg-secondary/50">
+                        <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        </div>
+                        <h3 class="font-semibold text-foreground mb-1">Chất Lượng Cam Kết</h3>
+                        <p class="text-sm text-muted-foreground">Trà 100% nguyên chất</p>
+                    </div>
+                    <div class="text-center p-6 rounded-2xl bg-secondary/50">
+                        <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                        </div>
+                        <h3 class="font-semibold text-foreground mb-1">Đổi Trả Dễ Dàng</h3>
+                        <p class="text-sm text-muted-foreground">Trong vòng 7 ngày</p>
+                    </div>
+                    <div class="text-center p-6 rounded-2xl bg-secondary/50">
+                        <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        </div>
+                        <h3 class="font-semibold text-foreground mb-1">Hỗ Trợ 24/7</h3>
+                        <p class="text-sm text-muted-foreground">Tư vấn tận tình</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="py-16">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl lg:text-4xl font-bold text-foreground mb-4">Sản Phẩm Nổi Bật</h2>
+                    <p class="text-muted-foreground max-w-2xl mx-auto">Những loại trà được yêu thích nhất, được tuyển chọn kỹ lưỡng từ các vùng trà nổi tiếng.</p>
+                </div>
+                
+                <!-- Category Tabs -->
+                <div class="flex flex-wrap justify-center gap-2 mb-8">
+                    <button class="px-6 py-2 bg-primary text-white rounded-full font-medium transition-all">Tất cả</button>
+                    <button class="px-6 py-2 bg-white text-muted-foreground rounded-full font-medium hover:bg-secondary transition-all border border-border">Trà Xanh</button>
+                    <button class="px-6 py-2 bg-white text-muted-foreground rounded-full font-medium hover:bg-secondary transition-all border border-border">Trà Ô Long</button>
+                    <button class="px-6 py-2 bg-white text-muted-foreground rounded-full font-medium hover:bg-secondary transition-all border border-border">Trà Sen</button>
+                </div>
+                
+                <!-- Products Grid -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Product 1 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group border border-border">
+                        <div class="relative aspect-square overflow-hidden">
+                            <img src="../assets/product-1.jpg" alt="Trà Xanh Thái Nguyên" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=400&h=400&fit=crop'">
+                            <span class="absolute top-3 left-3 px-3 py-1 bg-red-500 text-white text-xs font-medium rounded-full">-20%</span>
+                            <button class="absolute top-3 right-3 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-primary hover:text-white">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <span class="text-xs text-primary font-medium">Trà Xanh</span>
+                            <h3 class="font-semibold text-foreground mt-1 mb-2 line-clamp-2">Trà Xanh Thái Nguyên Đặc Biệt</h3>
+                            <div class="flex items-center mb-3">
+                                <div class="flex text-yellow-400">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                </div>
+                                <span class="text-xs text-muted-foreground ml-2">(128)</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-lg font-bold text-primary">240.000đ</span>
+                                    <span class="text-sm text-muted-foreground line-through ml-2">300.000đ</span>
+                                </div>
+                                <button class="w-10 h-10 bg-primary text-white rounded-xl flex items-center justify-center hover:opacity-90 transition-all">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 2 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group border border-border">
+                        <div class="relative aspect-square overflow-hidden">
+                            <img src="../assets/product-2.jpg" alt="Trà Ô Long" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?w=400&h=400&fit=crop'">
+                            <button class="absolute top-3 right-3 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-primary hover:text-white">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <span class="text-xs text-primary font-medium">Trà Ô Long</span>
+                            <h3 class="font-semibold text-foreground mt-1 mb-2 line-clamp-2">Trà Ô Long Cao Cấp</h3>
+                            <div class="flex items-center mb-3">
+                                <div class="flex text-yellow-400">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                    <svg class="w-4 h-4 fill-current text-gray-300" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                </div>
+                                <span class="text-xs text-muted-foreground ml-2">(96)</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-lg font-bold text-primary">380.000đ</span>
+                                <button class="w-10 h-10 bg-primary text-white rounded-xl flex items-center justify-center hover:opacity-90 transition-all">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 3 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group border border-border">
+                        <div class="relative aspect-square overflow-hidden">
+                            <img src="../assets/product-3.jpg" alt="Trà Sen" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://images.unsplash.com/photo-1563822249366-3efb23b8e0c9?w=400&h=400&fit=crop'">
+                            <span class="absolute top-3 left-3 px-3 py-1 bg-primary text-white text-xs font-medium rounded-full">Mới</span>
+                            <button class="absolute top-3 right-3 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-primary hover:text-white">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <span class="text-xs text-primary font-medium">Trà Sen</span>
+                            <h3 class="font-semibold text-foreground mt-1 mb-2 line-clamp-2">Trà Sen Tây Hồ</h3>
+                            <div class="flex items-center mb-3">
+                                <div class="flex text-yellow-400">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                </div>
+                                <span class="text-xs text-muted-foreground ml-2">(156)</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-lg font-bold text-primary">450.000đ</span>
+                                <button class="w-10 h-10 bg-primary text-white rounded-xl flex items-center justify-center hover:opacity-90 transition-all">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 4 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group border border-border">
+                        <div class="relative aspect-square overflow-hidden">
+                            <img src="../assets/product-4.jpg" alt="Trà Nhài" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=400&h=400&fit=crop'">
+                            <button class="absolute top-3 right-3 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-primary hover:text-white">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <span class="text-xs text-primary font-medium">Trà Hoa</span>
+                            <h3 class="font-semibold text-foreground mt-1 mb-2 line-clamp-2">Trà Nhài Hương Thơm</h3>
+                            <div class="flex items-center mb-3">
+                                <div class="flex text-yellow-400">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                    <svg class="w-4 h-4 fill-current text-gray-300" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                </div>
+                                <span class="text-xs text-muted-foreground ml-2">(74)</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-lg font-bold text-primary">280.000đ</span>
+                                <button class="w-10 h-10 bg-primary text-white rounded-xl flex items-center justify-center hover:opacity-90 transition-all">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-10">
+                    <a href="products.html" class="inline-flex items-center px-8 py-3 bg-white text-foreground rounded-xl hover:bg-secondary transition-all font-semibold border border-border">
+                        Xem Tất Cả Sản Phẩm
+                        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Combo Section -->
+        <section class="py-16 bg-secondary/30">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl lg:text-4xl font-bold text-foreground mb-4">Combo Tiết Kiệm</h2>
+                    <p class="text-muted-foreground max-w-2xl mx-auto">Tiết kiệm hơn với các combo trà được thiết kế đặc biệt.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Combo 1 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-border">
+                        <div class="aspect-video overflow-hidden">
+                            <img src="../assets/combo-1.jpg" alt="Combo Trà Xanh" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=600&h=400&fit=crop'">
+                        </div>
+                        <div class="p-6">
+                            <span class="inline-block px-3 py-1 bg-red-100 text-red-600 rounded-full text-xs font-medium mb-3">Tiết kiệm 25%</span>
+                            <h3 class="text-xl font-bold text-foreground mb-2">Combo Trà Xanh Gia Đình</h3>
+                            <p class="text-muted-foreground text-sm mb-4">3 loại trà xanh cao cấp cho cả gia đình thưởng thức.</p>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-2xl font-bold text-primary">650.000đ</span>
+                                    <span class="text-sm text-muted-foreground line-through ml-2">860.000đ</span>
+                                </div>
+                                <button class="px-4 py-2 bg-primary text-white rounded-xl hover:opacity-90 transition-all font-medium">Mua ngay</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Combo 2 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-border">
+                        <div class="aspect-video overflow-hidden">
+                            <img src="../assets/combo-2.jpg" alt="Combo Premium" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?w=600&h=400&fit=crop'">
+                        </div>
+                        <div class="p-6">
+                            <span class="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium mb-3">Bán chạy</span>
+                            <h3 class="text-xl font-bold text-foreground mb-2">Combo Premium Selection</h3>
+                            <p class="text-muted-foreground text-sm mb-4">Bộ sưu tập trà cao cấp dành cho người sành trà.</p>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-2xl font-bold text-primary">1.200.000đ</span>
+                                    <span class="text-sm text-muted-foreground line-through ml-2">1.500.000đ</span>
+                                </div>
+                                <button class="px-4 py-2 bg-primary text-white rounded-xl hover:opacity-90 transition-all font-medium">Mua ngay</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Combo 3 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-border">
+                        <div class="aspect-video overflow-hidden">
+                            <img src="../assets/combo-3.jpg" alt="Combo Quà Tặng" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1563822249366-3efb23b8e0c9?w=600&h=400&fit=crop'">
+                        </div>
+                        <div class="p-6">
+                            <span class="inline-block px-3 py-1 bg-amber-100 text-amber-600 rounded-full text-xs font-medium mb-3">Quà tặng</span>
+                            <h3 class="text-xl font-bold text-foreground mb-2">Combo Quà Tặng Sang Trọng</h3>
+                            <p class="text-muted-foreground text-sm mb-4">Bộ quà tặng hoàn hảo cho người thân yêu.</p>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-2xl font-bold text-primary">980.000đ</span>
+                                    <span class="text-sm text-muted-foreground line-through ml-2">1.250.000đ</span>
+                                </div>
+                                <button class="px-4 py-2 bg-primary text-white rounded-xl hover:opacity-90 transition-all font-medium">Mua ngay</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="py-16 bg-primary text-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold mb-4">Đăng Ký Nhận Tin</h2>
+                <p class="text-white/80 max-w-xl mx-auto mb-8">Nhận thông tin về sản phẩm mới, khuyến mãi đặc biệt và mẹo thưởng trà.</p>
+                <form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+                    <input type="email" placeholder="Email của bạn" class="flex-1 px-6 py-4 rounded-xl text-foreground focus:outline-none focus:ring-2 focus:ring-white/50">
+                    <button type="submit" class="px-8 py-4 bg-white text-primary rounded-xl font-semibold hover:bg-secondary transition-all">Đăng Ký</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-foreground text-white">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-display font-bold mb-4">Trà Việt</h3>
+                    <p class="text-white/70 text-sm leading-relaxed mb-4">Mang đến tinh hoa trà Việt Nam với những sản phẩm chất lượng cao.</p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Liên Kết Nhanh</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="products.html" class="text-white/70 hover:text-white transition-colors">Sản phẩm</a></li>
+                        <li><a href="about.html" class="text-white/70 hover:text-white transition-colors">Về chúng tôi</a></li>
+                        <li><a href="contact.html" class="text-white/70 hover:text-white transition-colors">Liên hệ</a></li>
+                        <li><a href="faq.html" class="text-white/70 hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Hỗ Trợ</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="shipping.html" class="text-white/70 hover:text-white transition-colors">Vận chuyển</a></li>
+                        <li><a href="returns.html" class="text-white/70 hover:text-white transition-colors">Đổi trả</a></li>
+                        <li><a href="privacy.html" class="text-white/70 hover:text-white transition-colors">Bảo mật</a></li>
+                        <li><a href="terms.html" class="text-white/70 hover:text-white transition-colors">Điều khoản</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Liên Hệ</h4>
+                    <ul class="space-y-3 text-sm text-white/70">
+                        <li>123 Đường Trà, Q1, TP.HCM</li>
+                        <li>1900 1234</li>
+                        <li>info@traviet.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 mt-8 pt-8 text-center">
+                <p class="text-white/50 text-sm">© 2024 Trà Việt. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-btn')?.addEventListener('click', function() {
+            document.getElementById('mobile-menu')?.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
