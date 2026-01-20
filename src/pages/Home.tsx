@@ -3,7 +3,10 @@ import { ArrowRight, Leaf, Shield, Truck, Award, Star, Quote, Search, ShoppingBa
 import { Link } from "react-router-dom";
 import MainLayout from "@/components/layout/MainLayout";
 import ProductCard from "@/components/ui/ProductCard";
+import ProductCardSkeleton from "@/components/ui/ProductCardSkeleton";
+import ComboCardSkeleton from "@/components/ui/ComboCardSkeleton";
 import ScrollAnimation from "@/components/ui/ScrollAnimation";
+import useLoadingSimulation from "@/hooks/useLoadingSimulation";
 import heroImage from "@/assets/hero-tea.jpg";
 import product1 from "@/assets/product-1.jpg";
 import product2 from "@/assets/product-2.jpg";
@@ -153,6 +156,7 @@ const orderSteps = [
 
 const Home = () => {
   const [activeFilter, setActiveFilter] = useState<ProductFilter>('all');
+  const isLoading = useLoadingSimulation(1000);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
@@ -296,19 +300,29 @@ const Home = () => {
           </ScrollAnimation>
 
           {/* Products Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {filteredProducts.map((product, index) => (
-              <ScrollAnimation key={product.id} animation="fade-up" delay={index * 50}>
-                <ProductCard {...product} />
-              </ScrollAnimation>
-            ))}
-          </div>
-
-          {/* Empty State */}
-          {filteredProducts.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground">Không có sản phẩm nào trong danh mục này</p>
+          {isLoading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {Array.from({ length: 8 }).map((_, index) => (
+                <ProductCardSkeleton key={index} />
+              ))}
             </div>
+          ) : (
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {filteredProducts.map((product, index) => (
+                  <ScrollAnimation key={product.id} animation="fade-up" delay={index * 50}>
+                    <ProductCard {...product} />
+                  </ScrollAnimation>
+                ))}
+              </div>
+
+              {/* Empty State */}
+              {filteredProducts.length === 0 && (
+                <div className="text-center py-12">
+                  <p className="text-muted-foreground">Không có sản phẩm nào trong danh mục này</p>
+                </div>
+              )}
+            </>
           )}
 
           <ScrollAnimation animation="fade-up" delay={200}>
@@ -335,62 +349,70 @@ const Home = () => {
             </div>
           </ScrollAnimation>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {combos.map((combo, index) => (
-              <ScrollAnimation key={combo.id} animation="fade-up" delay={index * 100}>
-                <div className="group bg-card rounded-3xl overflow-hidden shadow-card hover:shadow-hover transition-all duration-300">
-                  {/* Image */}
-                  <div className="relative aspect-square overflow-hidden">
-                    <img
-                      src={combo.image}
-                      alt={combo.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    {/* Tag */}
-                    <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold ${
-                      combo.tag === 'Bestseller' ? 'bg-primary text-primary-foreground' :
-                      combo.tag === 'Mới' ? 'bg-accent text-accent-foreground' :
-                      'bg-destructive text-destructive-foreground'
-                    }`}>
-                      {combo.tag}
+          {isLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {Array.from({ length: 3 }).map((_, index) => (
+                <ComboCardSkeleton key={index} />
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {combos.map((combo, index) => (
+                <ScrollAnimation key={combo.id} animation="fade-up" delay={index * 100}>
+                  <div className="group bg-card rounded-3xl overflow-hidden shadow-card hover:shadow-hover transition-all duration-300">
+                    {/* Image */}
+                    <div className="relative aspect-square overflow-hidden">
+                      <img
+                        src={combo.image}
+                        alt={combo.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      {/* Tag */}
+                      <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold ${
+                        combo.tag === 'Bestseller' ? 'bg-primary text-primary-foreground' :
+                        combo.tag === 'Mới' ? 'bg-accent text-accent-foreground' :
+                        'bg-destructive text-destructive-foreground'
+                      }`}>
+                        {combo.tag}
+                      </div>
+                      {/* Discount */}
+                      <div className="absolute top-4 right-4 bg-card/90 backdrop-blur-sm px-2 py-1 rounded-lg text-sm font-bold text-destructive">
+                        -{Math.round((1 - combo.price / combo.originalPrice) * 100)}%
+                      </div>
                     </div>
-                    {/* Discount */}
-                    <div className="absolute top-4 right-4 bg-card/90 backdrop-blur-sm px-2 py-1 rounded-lg text-sm font-bold text-destructive">
-                      -{Math.round((1 - combo.price / combo.originalPrice) * 100)}%
+
+                    {/* Content */}
+                    <div className="p-6">
+                      <h3 className="font-display text-xl font-bold text-foreground mb-2">
+                        {combo.name}
+                      </h3>
+                      <p className="text-muted-foreground text-sm mb-4">
+                        {combo.description}
+                      </p>
+
+                      {/* Price */}
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="text-2xl font-bold text-primary">
+                          {formatPrice(combo.price)}
+                        </span>
+                        <span className="text-muted-foreground line-through">
+                          {formatPrice(combo.originalPrice)}
+                        </span>
+                      </div>
+
+                      {/* CTA */}
+                      <Link
+                        to={`/products/${combo.id}`}
+                        className="btn-primary w-full text-center block"
+                      >
+                        Xem chi tiết
+                      </Link>
                     </div>
                   </div>
-
-                  {/* Content */}
-                  <div className="p-6">
-                    <h3 className="font-display text-xl font-bold text-foreground mb-2">
-                      {combo.name}
-                    </h3>
-                    <p className="text-muted-foreground text-sm mb-4">
-                      {combo.description}
-                    </p>
-
-                    {/* Price */}
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="text-2xl font-bold text-primary">
-                        {formatPrice(combo.price)}
-                      </span>
-                      <span className="text-muted-foreground line-through">
-                        {formatPrice(combo.originalPrice)}
-                      </span>
-                    </div>
-
-                    {/* CTA */}
-                    <Link
-                      to={`/products/${combo.id}`}
-                      className="btn-primary w-full text-center block"
-                    >
-                      Xem chi tiết
-                    </Link>
-                  </div>
-                </div>
-              </ScrollAnimation>
-            ))}
-          </div>
+                </ScrollAnimation>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

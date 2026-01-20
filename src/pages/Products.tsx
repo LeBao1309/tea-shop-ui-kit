@@ -2,7 +2,9 @@ import { useState, useMemo } from "react";
 import { Search, SlidersHorizontal, ChevronDown, Leaf, Package, Coffee, Flower2, Gift, UtensilsCrossed } from "lucide-react";
 import MainLayout from "@/components/layout/MainLayout";
 import ProductCard from "@/components/ui/ProductCard";
+import ProductCardSkeleton from "@/components/ui/ProductCardSkeleton";
 import ScrollAnimation from "@/components/ui/ScrollAnimation";
+import useLoadingSimulation from "@/hooks/useLoadingSimulation";
 import product1 from "@/assets/product-1.jpg";
 import product2 from "@/assets/product-2.jpg";
 import product3 from "@/assets/product-3.jpg";
@@ -81,6 +83,7 @@ const Products = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<SortOption>('newest');
   const [showSortDropdown, setShowSortDropdown] = useState(false);
+  const isLoading = useLoadingSimulation(1200);
 
   // Lọc và sắp xếp sản phẩm
   const filteredProducts = useMemo(() => {
@@ -314,20 +317,26 @@ const Products = () => {
               </div>
 
               {/* Products Grid */}
-              {filteredProducts.length > 0 ? (
+              {isLoading ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-              {filteredProducts.map((product, index) => (
-                <ScrollAnimation key={product.id} animation="fade-up" delay={index * 30}>
-                  <ProductCard 
-                    id={product.id}
-                    name={product.name}
-                    price={product.price}
-                    originalPrice={product.originalPrice}
-                    image={product.image}
-                    category={product.categoryName}
-                  />
-                </ScrollAnimation>
-              ))}
+                  {Array.from({ length: 9 }).map((_, index) => (
+                    <ProductCardSkeleton key={index} />
+                  ))}
+                </div>
+              ) : filteredProducts.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                  {filteredProducts.map((product, index) => (
+                    <ScrollAnimation key={product.id} animation="fade-up" delay={index * 30}>
+                      <ProductCard 
+                        id={product.id}
+                        name={product.name}
+                        price={product.price}
+                        originalPrice={product.originalPrice}
+                        image={product.image}
+                        category={product.categoryName}
+                      />
+                    </ScrollAnimation>
+                  ))}
                 </div>
               ) : (
                 <div className="text-center py-16 bg-secondary/30 rounded-2xl">
@@ -344,7 +353,7 @@ const Products = () => {
               )}
 
               {/* Pagination */}
-              {filteredProducts.length > 0 && (
+              {!isLoading && filteredProducts.length > 0 && (
                 <div className="flex items-center justify-center gap-2 mt-10">
                   <button className="w-10 h-10 rounded-xl bg-primary text-primary-foreground font-medium">
                     1
